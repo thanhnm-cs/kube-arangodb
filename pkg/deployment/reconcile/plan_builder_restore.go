@@ -118,7 +118,9 @@ func (r *Reconciler) createRestorePlanEncryption(ctx context.Context, spec api.D
 
 		if !status.Hashes.Encryption.Keys.ContainsSHA256(name) {
 			return true, api.Plan{
+				//nolint:staticcheck // SA1019 ignore this!
 				actions.NewClusterAction(api.ActionTypeEncryptionKeyPropagated).AddParam(propagated, conditionFalse),
+				//nolint:staticcheck // SA1019 ignore this!
 				actions.NewClusterAction(api.ActionTypeEncryptionKeyAdd).AddParam(secretActionParam, secret),
 			}
 		}
